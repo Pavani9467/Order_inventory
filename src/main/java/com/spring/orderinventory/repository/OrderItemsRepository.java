@@ -17,4 +17,7 @@ public interface OrderItemsRepository extends JpaRepository<OrderItem,Integer>{
 	           "WHERE oi.quantity BETWEEN :minQuantity AND :maxQuantity")
 	List<Customer> findCustomersByOrderQuantityRange(int minQuantity, int maxQuantity);
 	
+	
+	List<OrderItem> findByOrderOrderId(int orderId);
+	
 }

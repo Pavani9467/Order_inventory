@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.spring.orderinventory.entity.Customer;
 import com.spring.orderinventory.entity.Shipment;
 
 public interface ShipmentRepository extends JpaRepository<Shipment,Integer>{
@@ -23,6 +24,6 @@ public interface ShipmentRepository extends JpaRepository<Shipment,Integer>{
 	@Query("SELECT s FROM Shipment s WHERE s.shipmentStatus IN ('DELIVERED')")
 	List<Shipment> getCompletedShipmentsCustomerDetails();
 	
-
+	List<Shipment> findByCustomerId(Customer customerId);
 	
 }

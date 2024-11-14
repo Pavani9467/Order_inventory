@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.spring.orderinventory.entity.Order;
+import com.spring.orderinventory.entity.Shipment;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order,Integer>{
@@ -33,6 +34,11 @@ public interface OrderRepository extends JpaRepository<Order,Integer>{
 	@Query("SELECT o FROM Order o JOIN o.customer c WHERE c.emailAddress = :email")
     List<Order> findOrdersByCustomerEmail(@Param("email") String email);
 
+	
+	
+	//New one
+//	@Query("SELECT o FROM Shipment o WHERE o.orderId = ?1")
+//	List<Order> getByOrderId(int orderid);
 	
 	
 }
