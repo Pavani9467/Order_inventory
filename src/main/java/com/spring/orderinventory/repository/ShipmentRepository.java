@@ -23,7 +23,9 @@ public interface ShipmentRepository extends JpaRepository<Shipment,Integer>{
 	
 	@Query("SELECT s FROM Shipment s WHERE s.shipmentStatus IN ('DELIVERED')")
 	List<Shipment> getCompletedShipmentsCustomerDetails();
-	
+
 	List<Shipment> findByCustomerId(Customer customerId);
+	
+	
 	
 }

@@ -14,7 +14,7 @@ import com.spring.orderinventory.dto.ResponseStructure;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler({IdDoesNotPresentException.class,CustomerNotFoundException.class,OrdersNotFoundException.class})
+	@ExceptionHandler({IdDoesNotPresentException.class,CustomerNotFoundException.class,OrdersNotFoundException.class,NoCompletedOrdersException.class})
     public ResponseEntity<ResponseStructure<String>> handleIdDoesNotPresentException(IdDoesNotPresentException ex) {
         ResponseStructure<String> responseStructure = new ResponseStructure<>();
         responseStructure.setStatusCode(HttpStatus.NOT_FOUND.value());
@@ -86,5 +86,8 @@ public class GlobalExceptionHandler {
         response.setData(List.of());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
+    
+   
+    
 	
 }

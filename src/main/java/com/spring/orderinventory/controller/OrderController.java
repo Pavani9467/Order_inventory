@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.orderinventory.Exception.OrdersNotFoundException;
 import com.spring.orderinventory.dto.ResponseStructure;
+import com.spring.orderinventory.entity.Customer;
 import com.spring.orderinventory.entity.Order;
 import com.spring.orderinventory.entity.OrderItem;
 import com.spring.orderinventory.repository.OrderRepository;
@@ -30,7 +31,7 @@ public class OrderController {
 	 OrderService orderService;
 	 
 	 //gary.jenkins@internalmail
-	 //select o.*,c.* from orders o join customers c on o.customer_id = c.customer_id where full_name = 'Peter Jones';
+//	 select o.*,c.* from orders o join customers c on o.customer_id = c.customer_id where full_name = 'Peter Jones';
 	 @GetMapping("/api/v1/orders/customer/{email}")
 	 public ResponseEntity<ResponseStructure<List<Order>>> getOrderDetailsByCustomerId(@PathVariable String email) {
 			return orderService.getOrderDetailsByCustomerId(email);
@@ -52,6 +53,12 @@ public class OrderController {
 	        } catch (OrdersNotFoundException e) {
 	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	        }
+	    }
+	    
+	    
+	    @GetMapping("/api/v1/customers/orders/completed")
+	    public ResponseStructure<Customer> getCustomersWithCompletedOrders() {
+	        return orderService.getCustomersWithCompletedOrders();
 	    }
 	  
 }

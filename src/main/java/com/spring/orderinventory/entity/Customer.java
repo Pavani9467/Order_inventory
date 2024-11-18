@@ -17,6 +17,5 @@ public class Customer {
 	private String emailAddress;
 	@Column(name = "full_name")
 	private String fullName;
-	
 
 }

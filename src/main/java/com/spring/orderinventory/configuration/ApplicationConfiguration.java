@@ -17,7 +17,7 @@ public class ApplicationConfiguration {
 	public OpenAPI usersMicroserviceOpenAPI() {
 
 		Server localhost = new Server();
-		localhost.setUrl("http://hostname:8081");
+		localhost.setUrl("http://localhost:8081");
 		localhost.setDescription("Development environment");
 
 		Contact contact = new Contact();
@@ -33,4 +33,5 @@ public class ApplicationConfiguration {
 
 		return new OpenAPI().info(info).servers(List.of(localhost));
 	}
+	
 }

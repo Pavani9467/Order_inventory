@@ -2,7 +2,7 @@ package com.spring.orderinventory.sevice;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,17 +10,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.spring.orderinventory.Exception.IdDoesNotPresentException;
+import com.spring.orderinventory.Exception.NoCompletedOrdersException;
 import com.spring.orderinventory.Exception.OrdersNotFoundException;
-import com.spring.orderinventory.Exception.ProductNotFoundException;
+
 import com.spring.orderinventory.dao.OrderDao;
-import com.spring.orderinventory.dto.AddOrderItemRequest;
+
 import com.spring.orderinventory.dto.ResponseStructure;
+import com.spring.orderinventory.entity.Customer;
 import com.spring.orderinventory.entity.Order;
 import com.spring.orderinventory.entity.OrderItem;
-import com.spring.orderinventory.entity.Product;
+
 import com.spring.orderinventory.repository.OrderItemsRepository;
 import com.spring.orderinventory.repository.OrderRepository;
-import com.spring.orderinventory.repository.ProductRepository;
+
 
 @Service
 public class OrderService {
@@ -75,6 +77,21 @@ public class OrderService {
     }
 
 
+    
+    public ResponseStructure<Customer> getCustomersWithCompletedOrders() {
+        List<Customer> customers = orderDao.findCustomersWithCompletedOrders();
+
+        if (customers.isEmpty()) {
+            throw new NoCompletedOrdersException("No customers with completed orders found");
+        }
+
+        ResponseStructure<Customer> responseStructure = new ResponseStructure<>();
+        responseStructure.setStatusCode(HttpStatus.OK.value());
+        responseStructure.setMessage("Successfully fetched customers with completed orders");
+        responseStructure.setData(customers);
+
+        return responseStructure;
+    }
    
     
 }

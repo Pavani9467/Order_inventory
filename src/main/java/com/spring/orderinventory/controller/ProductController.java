@@ -8,26 +8,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.orderinventory.entity.Product;
 import com.spring.orderinventory.sevice.ProductService;
 
 @RestController
-@RequestMapping("/products")
 public class ProductController {
 	@Autowired
     private ProductService productService;
 
-    @PostMapping("/bulkAdd")
+    @PostMapping("/products/bulkAdd")
     public ResponseEntity<?> bulkAddProducts(@RequestBody List<Product> products) {
         return productService.addProductsInBulk(products);
     }
     
     
     //for put 
-    @PutMapping("/api/v1")
+    @PutMapping("/products/api/v1/products")
     public ResponseEntity<String> updateProduct(@RequestBody Product product) {
         try {
             // Check if the product or productId is invalid (assuming productId should be a positive number)

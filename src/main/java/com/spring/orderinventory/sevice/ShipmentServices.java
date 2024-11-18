@@ -16,12 +16,16 @@ import com.spring.orderinventory.dao.ShipmentDao;
 import com.spring.orderinventory.dto.ResponseStructure;
 import com.spring.orderinventory.entity.Customer;
 import com.spring.orderinventory.entity.Shipment;
+import com.spring.orderinventory.repository.ShipmentRepository;
 
 @Service
 public class ShipmentServices {
 	
 	@Autowired
 	private ShipmentDao shipmentDao;
+	
+	@Autowired
+	ShipmentRepository shipmentRepository;
 	
 	
 	public ResponseEntity<ResponseStructure<Shipment>> getShipementDetailsByCustomerId(int id){
